@@ -1,0 +1,34 @@
+{
+	"name": "rm/dateinterval",
+	"type": "library",
+	"description": "DateInterval extension",
+	"homepage": "https://github.com/romanmatyus/DateInterval",
+	"license": ["MIT"],
+	"authors": [
+		{
+			"name": "Roman Mátyus",
+			"homepage": "http://romiix.org",
+			"email": "romanmatyus@romiix.org"
+		}
+	],
+	"support": {
+		"email": "romanmatyus@romiix.org",
+		"issues": "https://github.com/romanmatyus/DateInterval/issues"
+	},
+	"require": {
+		"php": ">=7.0"
+	},
+	"require-dev": {
+		"nette/tester": "@dev",
+		"jakub-onderka/php-parallel-lint": "@dev",
+		"phpstan/phpstan": "~0.8"
+	},
+	"autoload": {
+		"psr-0": {
+			"RM\\DateInterval": "src/"
+		},
+		"classmap": [
+			"src/exceptions.php"
+		]
+	}
+}

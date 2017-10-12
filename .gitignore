@@ -1,0 +1,6 @@
+vendor
+composer.lock
+code-checker
+output/
+tests/temp*
+tests/secret*

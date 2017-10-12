@@ -1,0 +1,44 @@
+language: php
+php:
+    - 7.0
+    - 7.1
+    - hhvm
+    - nightly
+
+env:
+    matrix:
+        - COMPOSER_EXTRA_ARGS=""
+        - COMPOSER_EXTRA_ARGS="--prefer-lowest  --prefer-stable"
+
+matrix:
+    allow_failures:
+        - php: hhvm
+
+before_install:
+    - composer self-update
+
+
+install:
+    - mkdir -p vendor/bin
+    - composer update --no-interaction --prefer-source $COMPOSER_EXTRA_ARGS
+
+before_script:
+    - ./vendor/bin/parallel-lint -e php,phpt --exclude vendor .
+    - ./vendor/bin/phpstan analyse -l 5 src tests
+    - composer create-project nette/code-checker code-checker dev-master --no-interaction
+    - php code-checker/src/code-checker.php -d src
+    - php code-checker/src/code-checker.php -d tests
+    - if [[ $TRAVIS_PHP_VERSION == '7.1' ]] && [[ $COMPOSER_EXTRA_ARGS == '' ]]; then FLAGS="-d zend_extension=xdebug.so --coverage coverage.xml --coverage-src src"; fi;
+
+script:
+    - vendor/bin/tester tests -s -p php -c tests/php-unix.ini $FLAGS
+
+after_script:
+    - |
+        if [ $TRAVIS_PHP_VERSION = '7.1' ]; then
+            wget https://scrutinizer-ci.com/ocular.phar
+            php ocular.phar code-coverage:upload --format=php-clover coverage.xml
+        fi
+
+after_failure:
+    - for i in $(find tests -name \*.actual); do echo "--- $i"; cat $i; echo; echo; done
