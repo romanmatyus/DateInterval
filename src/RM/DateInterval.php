@@ -60,7 +60,7 @@ class DateInterval extends \DateInterval
 		$d1->add($this);
 		$d1->add(new self($interval));
 		$int = ($this->getRefDT())->diff($d1);
-		self::__construct(self::parse($int));
+		$this->__construct(self::parse($int));
 		if ($d1 < $this->getRefDT())
 			$this->invert = 1;
 		return $this;
@@ -72,7 +72,7 @@ class DateInterval extends \DateInterval
 		$d1->add($this);
 		$d1->sub(new self($interval));
 		$int = ($this->getRefDT())->diff($d1);
-		self::__construct(self::parse($int));
+		$this->__construct(self::parse($int));
 		if ($d1 < $this->getRefDT())
 			$this->invert = 1;
 		return $this;
