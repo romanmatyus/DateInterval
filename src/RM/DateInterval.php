@@ -131,7 +131,7 @@ class DateInterval extends \DateInterval
 		return new DateTime($this->refDT->format(DateTime::ISO8601));
 	}
 
-	private function validateRelativeFormat($interval, \Exception $e = NULL) : void
+	private function validateRelativeFormat($interval, \Exception $e = NULL)
 	{
 		$parse = date_parse($interval);
 		if ($parse['error_count'])
