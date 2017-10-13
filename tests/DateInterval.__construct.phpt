@@ -5,7 +5,7 @@ use Tester\Assert;
 
 require __DIR__ . '/bootstrap.php';
 
-$interval = new DateInterval();
+$interval = new DateInterval;
 Assert::type(\DateInterval::class, $interval);
 Assert::type(DateInterval::class, $interval);
 

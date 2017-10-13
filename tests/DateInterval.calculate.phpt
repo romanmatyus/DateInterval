@@ -5,7 +5,7 @@ use Tester\Assert;
 
 require __DIR__ . '/bootstrap.php';
 
-$interval = new DateInterval();
+$interval = new DateInterval;
 Assert::same(0, $interval->toSeconds());
 
 $interval->add('-PT1S');
@@ -25,3 +25,21 @@ Assert::same(-10, $interval->toSeconds());
 
 $interval->add(-5.5);
 Assert::same(-16, $interval->toSeconds());
+
+$intervals = [
+	'PT10S',
+	'PT13M14S',
+	'PT3M3S',
+	'PT4M58S',
+];
+
+$interval = new DateInterval;
+foreach ([
+	'PT10S', // 0:10
+	'PT13M14S', // 13:24
+	'PT3M3S', // 16:27
+	'PT4M58S', // 21:25
+] as $data) {
+	$interval->add($data);
+}
+Assert::same('21:25', $interval->format('%i:%s'));
