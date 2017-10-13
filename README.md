@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/romanmatyus/DateInterval.svg?branch=master)](https://travis-ci.org/romanmatyus/DateInterval)
 [![Code Quality](https://scrutinizer-ci.com/g/romanmatyus/DateInterval/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/romanmatyus/DateInterval/)
 [![Code Coverage](https://scrutinizer-ci.com/g/romanmatyus/DateInterval/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/romanmatyus/DateInterval/)
-[![Latest Stable Version](https://poser.pugx.org/rm/dateinterval/v/stable)](https://packagist.org/packages/rm/dateinterval)
+[![Latest Stable Version](https://img.shields.io/github/release/romanmatyus/DateInterval.svg)](https://packagist.org/packages/rm/dateinterval)
 [![Latest Unstable Version](https://poser.pugx.org/rm/dateinterval/v/unstable)](https://packagist.org/packages/rm/dateinterval)
 [![License](https://poser.pugx.org/rm/dateinterval/license)](https://packagist.org/packages/rm/dateinterval)
 
