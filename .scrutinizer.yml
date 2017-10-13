@@ -6,3 +6,11 @@ checks:
 tools:
     external_code_coverage:
        timeout: 600
+
+build:
+    environment:
+        php:
+            version: 7.1
+    dependencies:
+        before:
+            - curl https://github.com/romanmatyus/DateInterval | grep -o '<img[ ]*src="[^"]*"' | grep -o '"[^"]*"' | grep -o '[^"]*' | grep https://camo.githubusercontent.com | xargs -L1 curl -X PURGE
