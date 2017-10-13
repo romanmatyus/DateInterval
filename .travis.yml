@@ -38,6 +38,7 @@ after_script:
         if [ $TRAVIS_PHP_VERSION = '7.1' ]; then
             wget https://scrutinizer-ci.com/ocular.phar
             php ocular.phar code-coverage:upload --format=php-clover coverage.xml
+            curl https://github.com/romanmatyus/DateInterval | grep -o '<img[ ]*src="[^"]*"' | grep -o '"[^"]*"' | grep -o '[^"]*' | grep https://camo.githubusercontent.com | xargs -L1 curl -X PURGE
         fi
 
 after_failure:
