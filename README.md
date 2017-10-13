@@ -32,7 +32,7 @@ new DateInterval(new \DateInterval('PT0S')); // 0 seconds
 new DateInterval('-P1D'); // - 1 day
 new DateInterval('+2 minutes'); 
 new DateInterval(10); // 10 seconds
-new DateInterval(-1000); // 1000 seconds
+new DateInterval(-1000); // -1000 seconds
 new DateInterval(5.5); // 6 seconds
 ```
 
