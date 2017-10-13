@@ -39,15 +39,9 @@ class DateInterval extends \DateInterval
 			parent::__construct($interval);
 		} catch (\Exception $e) {
 			$this->validateRelativeFormat($interval, $e);
-			try {
-				$d1 = $this->getRefDT();
-				$d2 = (clone $d1)->modify($interval);
-				if ($d1 > $d2)
-					$invert = TRUE;
-				parent::__construct(self::parse($d1->diff($d2)));
-			} catch (\Exception $e) {
-				throw new DateInterval\InvalidArgumentException($e->getMessage(), $e->getCode(), $e);
-			}
+			$d1 = $this->getRefDT();
+			$d2 = $this->getRefDT()->modify($interval);
+			parent::__construct(self::parse($d1->diff($d2)));
 		}
 		if ($invert) {
 			$this->invert = 1;
