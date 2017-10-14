@@ -15,6 +15,8 @@ class DateInterval extends \DateInterval
 
 	public function __construct($interval = 'PT0S')
 	{
+		if ($interval === NULL)
+			$interval = 'PT0S';
 		$this->refDT = new DateTimeImmutable('midnight');
 		$invert = FALSE;
 		if ($interval instanceof \DateInterval) {

@@ -9,6 +9,10 @@ $interval = new DateInterval;
 Assert::type(\DateInterval::class, $interval);
 Assert::type(DateInterval::class, $interval);
 
+$interval = new DateInterval(NULL);
+Assert::type(\DateInterval::class, $interval);
+Assert::type(DateInterval::class, $interval);
+
 $interval = new DateInterval('PT0S');
 Assert::type(\DateInterval::class, $interval);
 Assert::type(DateInterval::class, $interval);
