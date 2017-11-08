@@ -114,6 +114,10 @@ class DateInterval extends \DateInterval
 			$specString .= 'T0S';
 		}
 
+		if (strpos($specString, 'T-1H') !== FALSE) {
+			$specString = str_replace('T-1H', 'T23H', $specString);
+		}
+
 		return $specString;
 	}
 
