@@ -86,36 +86,47 @@ class DateInterval extends \DateInterval
 
 	public static function parse(\DateInterval $dateInterval) : string
 	{
-		$date = array_filter(array(
+		$date = array(
 			'Y' => $dateInterval->y,
 			'M' => $dateInterval->m,
 			'D' => $dateInterval->d
-		));
+		);
 
-		$time = array_filter(array(
+		$time = array(
 			'H' => $dateInterval->h,
 			'M' => $dateInterval->i,
 			'S' => $dateInterval->s
-		));
+		);
+
+		if (isset($time['H']) && $time['H'] < 0) {
+			$time['H'] = 24 + $time['H'];
+			if ($date['D'] >= 1)
+				$date['D']--;
+			elseif ($date['M'] >= 1)
+				$date['M']--;
+			elseif ($date['Y'] >= 1)
+				$date['Y']--;
+		}
+
+		if ($time['H'] === 24) {
+			$date['D']++;
+			$time['H'] = 0;
+		}
 
 		$specString = 'P';
 
-		foreach ($date as $key => $value) {
+		foreach (array_filter($date) as $key => $value) {
 			$specString .= $value . $key;
 		}
-		if (count($time) > 0) {
+		if (count(array_filter($time)) > 0) {
 			$specString .= 'T';
-			foreach ($time as $key => $value) {
+			foreach (array_filter($time) as $key => $value) {
 				$specString .= $value . $key;
 			}
 		}
 
 		if (strlen($specString) === 1) {
 			$specString .= 'T0S';
-		}
-
-		if (strpos($specString, 'T-1H') !== FALSE) {
-			$specString = str_replace('T-1H', 'T23H', $specString);
 		}
 
 		return $specString;
