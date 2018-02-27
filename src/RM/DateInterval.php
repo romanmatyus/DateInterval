@@ -43,7 +43,16 @@ class DateInterval extends \DateInterval
 			$this->validateRelativeFormat($interval, $e);
 			$d1 = $this->getRefDT();
 			$d2 = $this->getRefDT()->modify($interval);
-			parent::__construct(self::parse($d1->diff($d2)));
+
+			$int = $d1->diff($d2);
+			if ($int === FALSE) {
+				$parse = date_parse($int);
+				if ($parse['error_count']) {
+					throw new DateInterval\InvalidArgumentException;
+				}
+			} else {
+				parent::__construct(self::parse($int));
+			}
 		}
 		if ($invert) {
 			$this->invert = 1;
@@ -56,7 +65,7 @@ class DateInterval extends \DateInterval
 		$d1->add($this);
 		$d1->add(new self($interval));
 		$int = ($this->getRefDT())->diff($d1);
-		$this->__construct(self::parse($int));
+		$this->__construct(self::parse(/** @scrutinizer ignore-type */$int));
 		if ($d1 < $this->getRefDT())
 			$this->invert = 1;
 		return $this;
@@ -68,7 +77,7 @@ class DateInterval extends \DateInterval
 		$d1->add($this);
 		$d1->sub(new self($interval));
 		$int = ($this->getRefDT())->diff($d1);
-		$this->__construct(self::parse($int));
+		$this->__construct(self::parse(/** @scrutinizer ignore-type */$int));
 		if ($d1 < $this->getRefDT())
 			$this->invert = 1;
 		return $this;
