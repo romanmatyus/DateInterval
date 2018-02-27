@@ -21,7 +21,7 @@
 	"require-dev": {
 		"nette/tester": "~2.0",
 		"jakub-onderka/php-parallel-lint": "~0.9",
-		"phpstan/phpstan": "~0.8"
+		"phpstan/phpstan": "~0.9"
 	},
 	"autoload": {
 		"psr-0": {
